@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function GorevEkle({ gorevEkle }) {
+export default function GorevEkle({ gorevEkle, karanlik }) {
   const [metin, setMetin] = useState("");
   const [oncelik, setOncelik] = useState("Düşük");
 
@@ -12,8 +12,8 @@ export default function GorevEkle({ gorevEkle }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow p-4 mb-6">
-      <h2 className="text-base font-semibold text-gray-700 mb-3">Yeni Görev Ekle</h2>
+    <div className={`rounded-2xl shadow p-4 mb-6 transition-colors duration-300 ${karanlik ? "bg-gray-700" : "bg-white"}`}>
+      <h2 className={`text-base font-semibold mb-3 ${karanlik ? "text-white" : "text-gray-700"}`}>Yeni Görev Ekle</h2>
       <div className="flex flex-col sm:flex-row gap-2 mb-3">
         <input
           type="text"
@@ -21,7 +21,7 @@ export default function GorevEkle({ gorevEkle }) {
           value={metin}
           onChange={(e) => setMetin(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleEkle()}
-          className="flex-1 border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className={`flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors duration-300 ${karanlik ? "bg-gray-600 border-gray-500 text-white placeholder-gray-400" : "bg-white border-gray-200 text-gray-800"}`}
         />
         <button
           onClick={handleEkle}
@@ -31,11 +31,11 @@ export default function GorevEkle({ gorevEkle }) {
         </button>
       </div>
       <div className="flex items-center gap-3">
-        <span className="text-sm text-gray-500">Öncelik</span>
+        <span className={`text-sm ${karanlik ? "text-gray-300" : "text-gray-500"}`}>Öncelik</span>
         <select
           value={oncelik}
           onChange={(e) => setOncelik(e.target.value)}
-          className="border border-gray-200 rounded-xl px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className={`border rounded-xl px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors duration-300 ${karanlik ? "bg-gray-600 border-gray-500 text-white" : "bg-white border-gray-200 text-gray-800"}`}
         >
           <option>Düşük</option>
           <option>Orta</option>
